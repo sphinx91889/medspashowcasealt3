@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -38,6 +38,13 @@ const Navbar = () => {
   const handleLinkClick = () => {
     setIsMobileMenuOpen(false);
     window.scrollTo(0, 0); // Scroll to top when navigating
+  };
+
+  // Phone number for the medspa
+  const phoneNumber = '+1 (555) 123-4567';
+
+  const handlePhoneCall = () => {
+    window.location.href = `tel:${phoneNumber.replace(/\D/g, '')}`;
   };
 
   return (
@@ -85,7 +92,7 @@ const Navbar = () => {
             </div>
           </div>
 
-          <div className="hidden md:block">
+          <div className="hidden md:flex items-center space-x-4">
             <Link 
               to="/contact" 
               className="btn-primary"
@@ -93,6 +100,16 @@ const Navbar = () => {
             >
               Book Consultation
             </Link>
+            <button
+              onClick={handlePhoneCall}
+              className="bg-teal-100 text-teal-700 p-3 rounded-full hover:bg-teal-200 transition-colors duration-300 group"
+              aria-label="Call Medspa"
+            >
+              <Phone 
+                className="w-5 h-5 group-hover:scale-110 transition-transform" 
+                strokeWidth={2} 
+              />
+            </button>
           </div>
 
           <div className="md:hidden">
@@ -124,7 +141,7 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="px-3 py-2">
+            <div className="px-3 py-2 space-y-2">
               <Link 
                 to="/contact" 
                 className="btn-primary w-full"
@@ -132,6 +149,13 @@ const Navbar = () => {
               >
                 Book Consultation
               </Link>
+              <button
+                onClick={handlePhoneCall}
+                className="w-full bg-teal-100 text-teal-700 py-3 rounded-lg hover:bg-teal-200 transition-colors duration-300 flex items-center justify-center space-x-2"
+              >
+                <Phone className="w-5 h-5" strokeWidth={2} />
+                <span>Call {phoneNumber}</span>
+              </button>
             </div>
           </div>
         </div>
