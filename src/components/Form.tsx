@@ -10,7 +10,7 @@ const Form = () => {
     existingClient: false,
   });
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
@@ -18,7 +18,7 @@ const Form = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Form Submitted:", formData);
     // Add form submission logic here
@@ -37,6 +37,13 @@ const Form = () => {
           <h3 className="text-center text-teal-700 font-playfair text-3xl md:text-5xl font-semibold mb-6">
             Let's Chat
           </h3>
+          
+          {/* Call Button */}
+          <div className="text-center mb-6">
+            <a href="tel:+1234567890" className="bg-teal-800 text-white py-3 px-6 rounded-lg font-semibold hover:bg-teal-900 transition-all">
+              Call Us Now
+            </a>
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             {/* Full Name */}
